@@ -1,23 +1,19 @@
 <template>
   <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        SPA_calendar_to_do_list
-      </h1>
-      <h2 class="subtitle">
-        My mathematical Nuxt.js project
-      </h2>
-    </div>
+    <calendar></calendar>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+import calendar from '@/components/Calendar'
 export default {
   components: {
-    Logo
+    calendar
+  },
+  data() {
+    return {
+      a: 'ad'
+    }
   }
 }
 </script>

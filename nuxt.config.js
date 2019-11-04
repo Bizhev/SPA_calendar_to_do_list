@@ -1,7 +1,7 @@
-let base = 'SPA_calendar_to_do_list';
+const base = 'SPA_calendar_to_do_list'
 module.exports = {
     router: {
-        base: (process.env.NODE_ENV === 'development') ? '/' : '/' + base + '/',
+        base: process.env.NODE_ENV === 'development' ? '/' : '/' + base + '/'
     },
     mode: 'spa',
     /*
@@ -37,8 +37,12 @@ module.exports = {
      */
     buildModules: [
         // Doc: https://github.com/nuxt-community/eslint-module
-        '@nuxtjs/eslint-module'
+        '@nuxtjs/eslint-module', '@nuxtjs/moment'
     ],
+    moment: {
+        defaultLocale: 'ru',
+        locales: ['ru']
+    },
     /*
      ** Nuxt.js modules
      */
@@ -59,6 +63,18 @@ module.exports = {
         /*
          ** You can extend webpack config here
          */
-        extend(config, ctx) {}
+        extend(config, ctx) {
+            if (ctx.dev && ctx.isClient) {
+                config.module.rules.push({
+                    enforce: 'pre',
+                    test: /\.(js|vue)$/,
+                    loader: 'eslint-loader',
+                    exclude: /(node_modules)/,
+                    options: {
+                        fix: true
+                    }
+                })
+            }
+        }
     }
 }
