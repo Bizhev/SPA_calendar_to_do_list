@@ -91,5 +91,6 @@ sw.*
 
 
 # other sh 
-./deploy.sh
-./push.sh
+deploy.sh
+push.sh
+push.sh

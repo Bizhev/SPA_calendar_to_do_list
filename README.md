@@ -3,21 +3,13 @@
 
 [DEMO](https://bizhev.github.io/SPA_calendar_to_do_list/) this repo.
 
+### Additionally
+- [ ] Implement event wrapping by drag'nDrop days.
+
 ## Build Setup
 
 ``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+yarn dev # run dev server
 ```
 
 ### create-nuxt-app v2.11.1 settings:
