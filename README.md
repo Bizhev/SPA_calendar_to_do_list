@@ -2,8 +2,12 @@
 > Task completed with ❤
 
 [DEMO](https://bizhev.github.io/SPA_calendar_to_do_list/) this repo.
-
+## Tasks
+- [x] The screen should display a calendar for the selected year
+- [x] An event has a date (over time), a name and a description.
+- [x] Each event can be edited and deleted.
 ### Additionally
+
 - [ ] Implement event wrapping by drag'nDrop days.
 
 ## Build Setup
