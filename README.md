@@ -1,6 +1,7 @@
-# SPA_calendar_to_do_list
+# SPA calendar to do list
+> Task completed with ❤
 
-> My mathematical Nuxt.js project
+[DEMO](https://bizhev.github.io/SPA_calendar_to_do_list/) this repo.
 
 ## Build Setup
 
@@ -18,8 +19,6 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 ### create-nuxt-app v2.11.1 settings:
 ```bash
