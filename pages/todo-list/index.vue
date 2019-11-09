@@ -1,11 +1,21 @@
 <template>
   <div class="container">
-    <a-button @click="test()">test</a-button>
-    <a-button @click="test2()">commit</a-button>
+    <div style="text-align:left">
+      <full-data-task
+        v-for="(item, i) in $store.state.todo.list"
+        v-bind:key="i"
+        :data="item"
+      ></full-data-task>
+      <nuxt-link to="/">back </nuxt-link>
+    </div>
   </div>
 </template>
 <script>
+import FullDataTask from '@/components/FullDataTask'
 export default {
+  components: {
+    FullDataTask
+  },
   data() {
     return {
       a: 'test'
@@ -21,36 +31,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>

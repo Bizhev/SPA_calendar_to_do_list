@@ -51,7 +51,7 @@
         </a-tooltip>
       </p>
     </a-card>
-    <a-button @click="test">test</a-button>
+    <!-- <a-button @click="test">test</a-button> -->
 
     <a-modal v-model="isShowAddToDo" title="Add todo" @ok="addToDo">
       <p>

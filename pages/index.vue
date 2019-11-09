@@ -1,12 +1,18 @@
 <template>
   <div class="container">
     <div>
-      <Day></Day>
-      <a href="https://github.com/Bizhev/SPA_calendar_to_do_list"
-        >code on github</a
-      >
-      <a-button @click="test()">test</a-button>
-      <a-button @click="test2()">commit</a-button>
+      <day></day>
+      <a href="https://github.com/Bizhev/SPA_calendar_to_do_list">
+        See code on github,
+      </a>
+      <p>
+        All to do:
+        <b>{{ $store.state.todo.list.length }}</b>
+        , you can
+        <nuxt-link to="/todo-list">see all todo list</nuxt-link>
+      </p>
+      <!-- <a-button @click="test()">test</a-button>
+      <a-button @click="test2()">commit</a-button> -->
     </div>
   </div>
 </template>
@@ -29,7 +35,7 @@ export default {
   },
   methods: {
     test() {
-      console.log('this', this)
+      console.log('this----', this.$store.state.todo.list.length)
     },
     test2() {
       console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
