@@ -16,7 +16,7 @@
           type="primary"
           icon="plus"
           shape="circle"
-          @click="addToDo(date)"
+          @click="showAddToDoForm(date)"
         />
       </a-tooltip>
       <p v-for="(task, i) in getToDayTasks" v-bind:key="i">
@@ -53,27 +53,87 @@
     </a-card>
     <a-button @click="test">test</a-button>
 
-    <edit-form-to-do
-      :is-form="isShowEditForm"
-      :data="{ a: 'a' }"
-    ></edit-form-to-do>
-
-    <add-form-to-do
-      :is-form="isShowAddForm"
-      :data="{ a: 'a' }"
-    ></add-form-to-do>
+    <a-modal v-model="isShowAddToDo" title="Add todo" @ok="addToDo">
+      <p>
+        <label>
+          Название:
+          <a-input v-model="newToDo.name" placeholder="Type your todo" />
+        </label>
+      </p>
+      <p>
+        <label>
+          Описание:
+          <a-textarea
+            v-model="newToDo.description"
+            placeholder="Description todo..."
+            :rows="4"
+          />
+        </label>
+      </p>
+      <p>
+        <label>
+          Важность:
+          <a-select style="width: 150px" v-model="newToDo.type">
+            <a-select-option
+              v-for="(item, i) in typeOptions"
+              v-bind:key="i"
+              :value="item.value"
+            >
+              {{ item.text }}
+            </a-select-option>
+          </a-select>
+        </label>
+      </p>
+      <p>
+        <label>
+          Выбор времени:
+          <a-time-picker v-model="newToDo.time" placeholder="" format="HH:mm" />
+        </label>
+      </p>
+      {{
+        $moment(newToDo.date).format('DD.MM.YYYY') +
+          ' в ' +
+          newToDo.time.format('HH:mm')
+      }}
+    </a-modal>
   </div>
 </template>
 <script>
 import Task from '@/components/Task'
-import EditFormToDo from '@/components/EditFormToDo'
-import AddFormToDo from '@/components/AddFormToDo'
 export default {
   data() {
     return {
       date: this.$moment('2019-11-10'),
-      isShowEditForm: false,
-      isShowAddForm: false
+      isShowAddToDo: false,
+      newToDo: {
+        date: null,
+        time: this.$moment(),
+        type: 'default',
+        name: '',
+        description: ''
+      },
+      typeOptions: [
+        {
+          text: 'зеленная',
+          value: 'success'
+        },
+        {
+          text: 'критичная',
+          value: 'error'
+        },
+        {
+          text: 'простая задача',
+          value: 'default'
+        },
+        {
+          text: 'уже делаю',
+          value: 'processing'
+        },
+        {
+          text: 'не обязательно',
+          value: 'warning'
+        }
+      ]
     }
   },
   computed: {
@@ -84,11 +144,22 @@ export default {
     }
   },
   methods: {
+    showAddToDoForm(date) {
+      this.newToDo = {
+        date: this.date.format('YYYY-MM-DD'),
+        time: this.$moment('00:00', 'HH:mm'),
+        type: 'processing',
+        name: '',
+        description: ''
+      }
+      this.isShowAddToDo = true
+    },
     addToDo(date) {
-      this.isShowAddForm = true
+      this.$store.commit('todo/ADD', this.newToDo)
+      this.isShowAddToDo = false
     },
     editToDo(datetime) {
-      this.isShowAddForm = true
+      console.log('dd')
     },
     deletingTask(datetime) {
       this.$store.commit('todo/DELETE', datetime)
@@ -98,9 +169,7 @@ export default {
     }
   },
   components: {
-    Task,
-    EditFormToDo,
-    AddFormToDo
+    Task
   }
 }
 </script>
