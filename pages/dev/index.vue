@@ -1,39 +1,22 @@
 <template>
   <div class="container">
-    <div>
-      <Day></Day>
-      <a href="https://github.com/Bizhev/SPA_calendar_to_do_list"
-        >code on github</a
-      >
-      <a-button @click="test()">test</a-button>
-      <a-button @click="test2()">commit</a-button>
-    </div>
+    <task task-type="success" task-name="SexY"></task>
+    <day to-day="2019-11-10"></day>
   </div>
 </template>
+
 <script>
+import Task from '@/components/Task'
 import Day from '@/components/Day'
 export default {
-  components: {
-    // calendar
-    Day
-  },
   data() {
     return {
-      a: 'test'
+      a: 'a'
     }
   },
-  computed: {
-    list() {
-      return this.$store.state.todo.list
-    }
-  },
-  methods: {
-    test() {
-      console.log('this', this)
-    },
-    test2() {
-      console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
-    }
+  components: {
+    Task,
+    Day
   }
 }
 </script>
