@@ -7,6 +7,12 @@
         :data="item"
       ></full-data-task>
       <nuxt-link to="/">back </nuxt-link>
+      <a-button type="default" @click="setData">
+        Set your localstorage all to do
+      </a-button>
+      <a-button type="primary" @click="getData">
+        Get your localstorage all to do
+      </a-button>
     </div>
   </div>
 </template>
@@ -22,12 +28,18 @@ export default {
     }
   },
   methods: {
-    // test() {
-    //   console.log('this', this)
-    // },
-    // test2() {
-    //   console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
-    // }
+    setData() {
+      localStorage.setItem(
+        'toDoList',
+        JSON.stringify(this.$store.state.todo.list)
+      )
+    },
+    getData() {
+      this.$store.commit(
+        'todo/INSERT',
+        JSON.parse(localStorage.getItem('toDoList'))
+      )
+    }
   }
 }
 </script>

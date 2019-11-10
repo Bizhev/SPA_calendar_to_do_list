@@ -43,5 +43,8 @@ export default {
       }
     })
     state.list = mass
+  },
+  INSERT(state, list) {
+    state.list = list
   }
 }
