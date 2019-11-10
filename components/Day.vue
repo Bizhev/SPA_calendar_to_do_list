@@ -19,6 +19,7 @@
           @click="showAddToDoForm(date)"
         />
       </a-tooltip>
+      <p v-if="getToDayTasks.length == 0">На этот день нет задач</p>
       <p v-for="(task, i) in getToDayTasks" :key="i">
         <task
           :type="task.type"
