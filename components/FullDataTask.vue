@@ -2,7 +2,7 @@
   <p>
     <a-badge
       :status="data.type"
-      :text="$moment(data.datetime).format('DD.MM.YYYY в HH:mm ') + data.name"
+      :text="$moment(data.datetime).format('DD.MM.YYYY HH:mm ') + data.name"
     />
   </p>
 </template>
@@ -15,7 +15,7 @@ export default {
         return {
           type: 'default',
           datetime: this.$moment().format('YYYY-MM-DD HH:mm'),
-          name: '???????? ??????'
+          name: 'Test Task'
         }
       }
     }
