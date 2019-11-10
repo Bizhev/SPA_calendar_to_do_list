@@ -10,7 +10,14 @@
 export default {
   props: {
     data: {
-      type: Object
+      type: Object,
+      default() {
+        return {
+          type: 'default',
+          datetime: this.$moment().format('YYYY-MM-DD HH:mm'),
+          name: '???????? ??????'
+        }
+      }
     }
   }
 }

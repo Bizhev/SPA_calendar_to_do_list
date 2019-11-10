@@ -11,8 +11,6 @@
         , you can
         <nuxt-link to="/todo-list">see all todo list</nuxt-link>
       </p>
-      <!-- <a-button @click="test()">test</a-button>
-      <a-button @click="test2()">commit</a-button> -->
     </div>
   </div>
 </template>
@@ -20,26 +18,7 @@
 import Day from '@/components/Day'
 export default {
   components: {
-    // calendar
     Day
-  },
-  data() {
-    return {
-      a: 'test'
-    }
-  },
-  computed: {
-    list() {
-      return this.$store.state.todo.list
-    }
-  },
-  methods: {
-    test() {
-      console.log('this----', this.$store.state.todo.list.length)
-    },
-    test2() {
-      console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
-    }
   }
 }
 </script>

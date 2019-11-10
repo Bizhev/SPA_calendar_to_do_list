@@ -8,14 +8,17 @@
 export default {
   props: {
     type: {
-      type: String
+      type: String,
+      default: 'default'
       // success | error | default | processing | warning
     },
     time: {
-      type: String
+      type: String,
+      default: '00:00'
     },
     name: {
-      type: String
+      type: String,
+      default: 'Тестовая задача'
     }
   }
 }

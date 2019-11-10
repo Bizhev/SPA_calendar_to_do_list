@@ -3,7 +3,7 @@
     <div style="text-align:left">
       <full-data-task
         v-for="(item, i) in $store.state.todo.list"
-        v-bind:key="i"
+        :key="i"
         :data="item"
       ></full-data-task>
       <nuxt-link to="/">back </nuxt-link>
@@ -22,12 +22,12 @@ export default {
     }
   },
   methods: {
-    test() {
-      console.log('this', this)
-    },
-    test2() {
-      console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
-    }
+    // test() {
+    //   console.log('this', this)
+    // },
+    // test2() {
+    //   console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
+    // }
   }
 }
 </script>

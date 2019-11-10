@@ -14,14 +14,6 @@ export default {
     return {
       a: 'test'
     }
-  },
-  methods: {
-    test() {
-      console.log('this', this)
-    },
-    test2() {
-      console.log('this', this.$store.commit('todo/ADD_TO_DO', 'sex'))
-    }
   }
 }
 </script>

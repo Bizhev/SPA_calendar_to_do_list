@@ -9,14 +9,14 @@
 import Task from '@/components/Task'
 import Day from '@/components/Day'
 export default {
+  components: {
+    Task,
+    Day
+  },
   data() {
     return {
       a: 'a'
     }
-  },
-  components: {
-    Task,
-    Day
   }
 }
 </script>

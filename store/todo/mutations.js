@@ -8,7 +8,8 @@ export default {
       ).length > 0
     ) {
       // eslint-disable-next-line
-      console.warn('Уже есть задача на это время')
+      console.warn('Уже есть задача на это время...')
+      // this.commit('todo/EDIT', { datetime, newToDo })
     } else {
       state.list.push({
         datetime,
@@ -18,12 +19,24 @@ export default {
       })
     }
   },
-  EDIT(state, payload) {
-    state.list.push(payload)
+  EDIT(state, { datetime, newToDo }) {
+    const mass = []
+    state.list.forEach((e) => {
+      if (this.$moment(e.datetime, 'YYYY-MM-DD HH:mm').isSame(datetime)) {
+        mass.push({
+          datetime,
+          description: newToDo.description,
+          name: newToDo.name,
+          type: newToDo.type
+        })
+      } else {
+        mass.push(e)
+      }
+    })
+    state.list = mass
   },
   DELETE(state, datetime) {
     const mass = []
-
     state.list.forEach((e) => {
       if (!this.$moment(e.datetime, 'YYYY-MM-DD HH:mm').isSame(datetime)) {
         mass.push(e)

@@ -19,7 +19,7 @@
           @click="showAddToDoForm(date)"
         />
       </a-tooltip>
-      <p v-for="(task, i) in getToDayTasks" v-bind:key="i">
+      <p v-for="(task, i) in getToDayTasks" :key="i">
         <task
           :type="task.type"
           :time="$moment(task.datetime, 'YYYY-MM-DD HH:mm').format('HH:mm')"
@@ -34,7 +34,7 @@
             type="primary"
             icon="edit"
             shape="circle"
-            @click="editToDo(task.datetime)"
+            @click="showEditToDoForm(task)"
           />
         </a-tooltip>
         <a-tooltip placement="right">
@@ -53,7 +53,10 @@
     </a-card>
     <!-- <a-button @click="test">test</a-button> -->
 
-    <a-modal v-model="isShowAddToDo" title="Add todo" @ok="addToDo">
+    <a-modal
+      v-model="isShowAddToDo"
+      @ok="newToDo.buttonType == 'add' ? addToDo() : editToDo(newToDo.date)"
+    >
       <p>
         <label>
           Название:
@@ -66,17 +69,17 @@
           <a-textarea
             v-model="newToDo.description"
             placeholder="Description todo..."
-            :rows="4"
+            :rows="3"
           />
         </label>
       </p>
       <p>
         <label>
           Важность:
-          <a-select style="width: 150px" v-model="newToDo.type">
+          <a-select v-model="newToDo.type" style="width: 150px">
             <a-select-option
               v-for="(item, i) in typeOptions"
-              v-bind:key="i"
+              :key="i"
               :value="item.value"
             >
               {{ item.text }}
@@ -101,12 +104,15 @@
 <script>
 import Task from '@/components/Task'
 export default {
+  components: {
+    Task
+  },
   data() {
     return {
       date: this.$moment('2019-11-10'),
       isShowAddToDo: false,
       newToDo: {
-        date: null,
+        datetime: null,
         time: this.$moment(),
         type: 'default',
         name: '',
@@ -150,7 +156,21 @@ export default {
         time: this.$moment('00:00', 'HH:mm'),
         type: 'processing',
         name: '',
+        buttonType: 'add',
         description: ''
+      }
+      this.isShowAddToDo = true
+    },
+    showEditToDoForm(task) {
+      this.newToDo = {
+        date: this.$moment(task.datetime, 'YYYY-MM-DD HH:mm').format(
+          'YYYY-MM-DD HH:mm'
+        ),
+        time: this.$moment(task.datetime, 'YYYY-MM-DD HH:mm'),
+        type: task.type,
+        name: task.name,
+        buttonType: 'edit',
+        description: task.description
       }
       this.isShowAddToDo = true
     },
@@ -159,17 +179,12 @@ export default {
       this.isShowAddToDo = false
     },
     editToDo(datetime) {
-      console.log('dd')
+      this.$store.commit('todo/EDIT', { datetime, newToDo: this.newToDo })
+      this.isShowAddToDo = false
     },
     deletingTask(datetime) {
       this.$store.commit('todo/DELETE', datetime)
-    },
-    test() {
-      console.log('getToDayTasks', this.getToDayTasks)
     }
-  },
-  components: {
-    Task
   }
 }
 </script>

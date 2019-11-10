@@ -45,13 +45,13 @@ export default {
       newTime: null
     }
   },
+  mounted() {
+    console.log('this.data', this.data)
+  },
   methods: {
     addToDo() {
       console.log('this', this)
     }
-  },
-  mounted() {
-    console.log('this.data', this.data)
   }
 }
 </script>
