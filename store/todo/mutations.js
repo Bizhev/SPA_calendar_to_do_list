@@ -36,13 +36,9 @@ export default {
     state.list = mass
   },
   DELETE(state, datetime) {
-    const mass = []
-    state.list.forEach((e) => {
-      if (!this.$moment(e.datetime, 'YYYY-MM-DD HH:mm').isSame(datetime)) {
-        mass.push(e)
-      }
-    })
-    state.list = mass
+    state.list = state.list.filter(
+      (e) => !this.$moment(e.datetime, 'YYYY-MM-DD HH:mm').isSame(datetime)
+    )
   },
   INSERT(state, list) {
     state.list = list
