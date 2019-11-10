@@ -150,6 +150,9 @@ export default {
       )
     }
   },
+  mounted() {
+    this.$store.commit('todo/GET_LOCALSTORAGE_LIST')
+  },
   methods: {
     showAddToDoForm(date) {
       this.newToDo = {

@@ -141,13 +141,9 @@ export default {
   },
   methods: {
     removeToDo(datetime) {
-      const mass = []
-      this.toDoList.forEach((e) => {
-        if (!this.$moment(e.date, 'YYYY-MM-DD HH:mm').isSame(datetime)) {
-          mass.push(e)
-        }
-      })
-      this.toDoList = mass
+      this.toDoList = this.toDoList.filter(
+        (e) => !this.$moment(e.date, 'YYYY-MM-DD HH:mm').isSame(datetime)
+      )
     },
     openFormAdd(val) {
       this.newToDoList.date = val.format('YYYY-MM-DD')

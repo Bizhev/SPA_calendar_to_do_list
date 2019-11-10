@@ -40,7 +40,10 @@ export default {
       (e) => !this.$moment(e.datetime, 'YYYY-MM-DD HH:mm').isSame(datetime)
     )
   },
-  INSERT(state, list) {
-    state.list = list
+  SET_LOCALSTORAGE_LIST(state, list) {
+    localStorage.setItem('toDoList', JSON.stringify(state.list))
+  },
+  GET_LOCALSTORAGE_LIST(state, list) {
+    state.list = JSON.parse(localStorage.getItem('toDoList'))
   }
 }
