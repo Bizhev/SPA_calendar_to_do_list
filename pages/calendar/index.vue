@@ -1,24 +1,19 @@
 <template>
   <div class="container">
-    <div>
-      <day></day>
-      <a href="https://github.com/Bizhev/SPA_calendar_to_do_list">
-        See code on github,
-      </a>
-      <p>
-        All to do:
-        <b>{{ $store.state.todo.list.length }}</b>
-        , you can
-        <nuxt-link to="/todo-list">see all todo list</nuxt-link>
-      </p>
-    </div>
+    <calendar></calendar>
   </div>
 </template>
 <script>
-import Day from '@/components/Day'
+import calendar from '@/components/Calendar'
+
 export default {
   components: {
-    Day
+    calendar
+  },
+  data() {
+    return {
+      a: 'test'
+    }
   }
 }
 </script>
