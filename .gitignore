@@ -91,6 +91,4 @@ sw.*
 
 
 # other sh 
-deploy.sh
-push.sh
 push.sh
