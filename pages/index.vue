@@ -1,16 +1,23 @@
 <template>
   <div class="container">
     <div>
-      <day></day>
-      <a href="https://github.com/Bizhev/SPA_calendar_to_do_list">
-        See code on github,
-      </a>
-      <p>
-        All to do:
-        <b>{{ $store.state.todo.list.length }}</b>
-        , you can
-        <nuxt-link to="/todo-list">see all todo list</nuxt-link>
-      </p>
+      <div class="day">
+        <day />
+      </div>
+      <div class="day">
+        <!--        <day />-->
+      </div>
+      <div>
+        <a href="https://github.com/Bizhev/SPA_calendar_to_do_list">
+          See code on github,
+        </a>
+        <p>
+          All to do:
+          <b>{{ $store.state.todo.list.length }}</b>
+          , you can
+          <nuxt-link to="/todo-list">see all todo list</nuxt-link>
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +26,9 @@ import Day from '@/components/Day'
 export default {
   components: {
     Day
+  },
+  mounted() {
+    console.log(this.$store.state.todo)
   }
 }
 </script>
@@ -53,5 +63,8 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+.day {
+  display: inline-block;
 }
 </style>

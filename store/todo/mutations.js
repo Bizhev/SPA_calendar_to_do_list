@@ -44,6 +44,7 @@ export default {
     localStorage.setItem('toDoList', JSON.stringify(state.list))
   },
   GET_LOCALSTORAGE_LIST(state, list) {
-    state.list = JSON.parse(localStorage.getItem('toDoList'))
+    const data = JSON.parse(localStorage.getItem('toDoList'))
+    if (data) state.list = data
   }
 }
